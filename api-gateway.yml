@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: api-gateway
+    name: api-gateway
+spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 80
+    selectort:
+        app: api-gateway
+    type: NodePort
+ 
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+    name: api-gateway-deployment
+spec:
+    name: api-gateway-deployment
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: api-gateway
+        spec:
+            containers:
+            - name: api-gateway
+              image: 192.168.128.132:8081/micr-service/api-gateway-zuul:latest
+              port:
+              - containersPort: 8083
+ 

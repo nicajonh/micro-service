@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: course-service
+    name: course-service
+spec:
+    ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+    selectort:
+        app: course-service
+    type: ClusterIP
+ 
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+    name: course-service-deployment
+spec:
+    name: course-service-deployment
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: api-gateway
+        spec:
+            containers:
+            - name: api-gateway
+              image: 192.168.128.132:8081/micr-service/course-service:latest
+              port:
+              - containersPort: 20880
+            - name: api-gateway
+              image: 192.168.128.132:8081/micr-service/course-edge-service:latest
+              port:
+              - containersPort: 8085
+ 
