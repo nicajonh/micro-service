@@ -27,7 +27,7 @@ spec:
                 app: message-service
         spec:
             containers:
-            - name: api-gateway
+            - name: message-service
               image: 192.168.128.132:8081/micr-service/message-service:latest
               port:
               - containersPort: 9090

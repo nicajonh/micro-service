@@ -22,7 +22,7 @@ class MessageServiceHandler:
         messageObj = MIMEText(message, "plain", "utf-8")
         messageObj['From'] = sender
         messageObj['To'] = email
-        messageObj['Subject'] = Header('慕课网邮件', 'utf-8')
+        messageObj['Subject'] = Header('xxx网邮件', 'utf-8')
         try:
             smtpObj = smtplib.SMTP('smtp.163.com')
             smtpObj.login(sender, authCode)

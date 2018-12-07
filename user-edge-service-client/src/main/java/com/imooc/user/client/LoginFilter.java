@@ -96,6 +96,7 @@ public abstract class LoginFilter implements Filter {
             byte[] temp = new byte[1024];
             StringBuilder sb = new StringBuilder();
             int len = 0;
+            inputStream = response.getEntity().getContent();
             while((len = inputStream.read(temp))>0) {
                 sb.append(new String(temp,0,len));
             }

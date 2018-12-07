@@ -2,5 +2,5 @@
 
 mvn clean package
 
-docker build -t hub.mooc.com:8080/micro-service/user-service:latest .
-docker push hub.mooc.com:8080/micro-service/user-service:latest
+docker build -t 192.168.128.132:8081/micro-service/user-service:latest .
+docker push 192.168.128.132:8081/micro-service/user-service:latest

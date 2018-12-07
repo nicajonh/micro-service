@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.imooc.course.dto.CourseDTO;
 import com.imooc.course.service.ICourseService;
 import com.imooc.thrift.user.dto.UserDTO;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

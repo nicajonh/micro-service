@@ -24,14 +24,14 @@ spec:
     template:
         metadata:
             labels:
-                app: api-gateway
+                app: course-service
         spec:
             containers:
-            - name: api-gateway
+            - name: course-service
               image: 192.168.128.132:8081/micr-service/course-service:latest
               port:
               - containersPort: 20880
-            - name: api-gateway
+            - name: course-edge-service
               image: 192.168.128.132:8081/micr-service/course-edge-service:latest
               port:
               - containersPort: 8085
