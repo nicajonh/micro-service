@@ -104,6 +104,7 @@ public class UserController {
     @ResponseBody
     public Response register(@RequestParam("username") String username,
                              @RequestParam("password") String password,
+                             @RequestParam("realname") String realname,
                              @RequestParam(value="mobile", required = false) String mobile,
                              @RequestParam(value="email", required = false) String email,
                              @RequestParam("verifyCode") String verifyCode) {
@@ -113,6 +114,8 @@ public class UserController {
         }
 
         if(StringUtils.isNotBlank(mobile)) {
+//            String testCode="45763";
+//            redisClient.set(mobile,testCode,3000);
             String redisCode = redisClient.get(mobile);
             if(!verifyCode.equals(redisCode)) {
                 return Response.VERIFY_CODE_INVALID;
@@ -125,6 +128,7 @@ public class UserController {
         }
         UserInfo userInfo = new UserInfo();
         userInfo.setUsername(username);
+        userInfo.setRealName(realname);
         userInfo.setPassword(md5(password));
         userInfo.setMobile(mobile);
         userInfo.setEmail(email);

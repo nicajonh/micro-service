@@ -8,16 +8,15 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Filter;
 
 /**
  * Created by Michael on 2017/10/28.
  */
 @SpringBootApplication
-public class ServiceApplication {
+public class CourseEdgeApplication {
 
     public static void main(String args[]) {
-        SpringApplication.run(ServiceApplication.class, args);
+        SpringApplication.run(CourseEdgeApplication.class, args);
     }
 
     @Bean
