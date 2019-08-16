@@ -9,7 +9,7 @@ spec:
     - port: 9090
       protocol: TCP
       targetPort: 9090
-    selectort:
+    selector:
         app: message-service
     type: ClusterIP
  
@@ -19,7 +19,6 @@ kind: Deployment
 metadata:
     name: message-service-deployment
 spec:
-    name: message-service-deployment
     replicas: 1
     template:
         metadata:
@@ -28,7 +27,7 @@ spec:
         spec:
             containers:
             - name: message-service
-              image: 192.168.128.132:8081/micr-service/message-service:latest
-              port:
-              - containersPort: 9090
+              image: harbor.nicajonh.com:8180/labdev/message-service:latest
+              ports:
+              - containerPort: 9090
  

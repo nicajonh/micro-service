@@ -9,7 +9,7 @@ spec:
     - port: 8081
       protocol: TCP
       targetPort: 8081
-    selectort:
+    selector:
         app: course-service
     type: ClusterIP
  
@@ -19,7 +19,6 @@ kind: Deployment
 metadata:
     name: course-service-deployment
 spec:
-    name: course-service-deployment
     replicas: 1
     template:
         metadata:
@@ -28,11 +27,11 @@ spec:
         spec:
             containers:
             - name: course-service
-              image: 192.168.128.132:8081/micr-service/course-service:latest
+              image: harbor.nicajonh.com:8180/labdev/course-service:latest
               port:
               - containersPort: 20880
             - name: course-edge-service
-              image: 192.168.128.132:8081/micr-service/course-edge-service:latest
-              port:
-              - containersPort: 8085
+              image: harbor.nicajonh.com:8180/labdev/course-edge-service:latest
+              ports:
+              - containerPort: 8085
  

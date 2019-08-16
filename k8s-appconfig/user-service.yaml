@@ -7,15 +7,15 @@ metadata:
     namespace: default
 spec:
     ports:
-    - name:user-edge-service-port
+    - name: user-edge-service-port
       port: 8082
       protocol: TCP
       targetPort: 8082
-    - name:user-service-port
+    - name: user-service-port
       port: 7911
       protocol: TCP
       targetPort: 7911
-    selectort:
+    selector:
         app: user-service
     sessionAffinity: None
     type: ClusterIP
@@ -26,7 +26,6 @@ kind: Deployment
 metadata:
     name: user-service-deployment
 spec:
-    name: user-service-deployment
     replicas: 1
     template:
         metadata:
@@ -35,12 +34,12 @@ spec:
         spec:
             containers:
             - name: user-service
-              image: 192.168.128.132:8081/micr-service/user-service:latest
-              port:
-              - containersPort: 7911
+              image: harbor.nicajonh.com:8180/labdev/user-service:latest
+              ports:
+              - containerPort: 7911
              containers:
             - name: user-edge-service
-              image: 192.168.128.132:8081/micr-service/user-edge-service:latest
-              port:
-              - containersPort: 8083
+              image: harbor.nicajonh.com:8180/labdev/user-edge-service:latest
+              ports:
+              - containerPort: 8083
  

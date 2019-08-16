@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       targetPort: 8080
       nodePort: 80
-    selectort:
+    selector:
         app: api-gateway
     type: NodePort
  
@@ -20,7 +20,6 @@ kind: Deployment
 metadata:
     name: api-gateway-deployment
 spec:
-    name: api-gateway-deployment
     replicas: 1
     template:
         metadata:
@@ -29,7 +28,7 @@ spec:
         spec:
             containers:
             - name: api-gateway
-              image: 192.168.128.132:8081/micr-service/api-gateway-zuul:latest
-              port:
-              - containersPort: 8083
+              image: harbor.nicajonh.com:8180/labdev/api-gateway-zuul:latest
+              ports:
+              - containerPort: 8083
  
