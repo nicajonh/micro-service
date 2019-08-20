@@ -4,7 +4,7 @@ metadata:
     labels:
         app: user-service
     name: user-service
-    namespace: default
+    namespace: microsys
 spec:
     ports:
     - name: user-edge-service-port
@@ -25,6 +25,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
     name: user-service-deployment
+    namespace: microsys
 spec:
     replicas: 1
     template:
@@ -34,12 +35,31 @@ spec:
         spec:
             containers:
             - name: user-service
-              image: harbor.nicajonh.com:8180/labdev/user-service:latest
+                image: harbor.nicajonh.com:8180/labdev/user-service:latest
+                imagePullPolicy: IfNotPresent
+                args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
               ports:
               - containerPort: 7911
+            env:
+                - name: DEPLOYMENT_ENV_KEY
+                valueFrom:
+                    configMapKeyRef:
+                    name: microsys-config
+                    key: DEPLOYMENT_EN
+              
              containers:
             - name: user-edge-service
-              image: harbor.nicajonh.com:8180/labdev/user-edge-service:latest
-              ports:
-              - containerPort: 8083
+                image: harbor.nicajonh.com:8180/labdev/user-edge-service:latest
+                imagePullPolicy: IfNotPresent
+                args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
+                ports:
+                - containerPort: 8083
+                env:
+                - name: DEPLOYMENT_ENV_KEY
+                    valueFrom:
+                        configMapKeyRef:
+                        name: microsys-config
+                        key: DEPLOYMENT_EN
+
+              
  

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microsys-config
+  namespace: microsys
+data:
+  DEPLOYMENT_ENV: prod
+  
