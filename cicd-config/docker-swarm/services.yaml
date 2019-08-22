@@ -1,3 +1,4 @@
+version: "3.4"
 services:
   message-service:
     image: harbor.nicajonh.com:8180/labdev/message-service:latest

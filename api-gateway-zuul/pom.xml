@@ -28,6 +28,11 @@
 
     </dependencies>
 
+    <properties>
+        <docker.repostory>harbor.nicajonh.com:8180</docker.repostory>
+    </properties>
+
+
     <build>
         <plugins>
             <plugin>
@@ -49,6 +54,29 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <serverId>docker-harbor</serverId>
+                    <registryUrl>${docker.repostory}</registryUrl>
+                    <imageName>${docker.repostory}/micro-service/${project.artifactId}:latest</imageName>
+                    <dockerDirectory>${basedir}</dockerDirectory>
+                    <push.image>true</push.image>
+                    <forceTags>true</forceTags>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: course-service
+    name: course-service
+    namespace: microsys
+spec:
+    ports:
+    - name: course-edge-service-port
+      port: 8051
+      protocol: TCP
+      targetPort: 8051
+    selector:
+      app: course-service
+    type: ClusterIP
+ 
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+    name: course-service-deployment
+    namespace: microsys
+spec:
+  selector:
+    matchLabels:
+      app: course-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: course-service
+    spec:
+      containers:
+      - name: course-service
+        image: harbor.nicajonh.com:8180/micro-service/course-service:latest
+        imagePullPolicy: IfNotPresent
+        args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
+        ports:
+        - containerPort: 20880
+        env:
+        - name: DEPLOYMENT_ENV_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: microsys-config
+              key: DEPLOYMENT_ENV
+
+      - name: course-edge-service
+        image: harbor.nicajonh.com:8180/micro-service/course-edge-service:latest
+        imagePullPolicy: IfNotPresent
+        args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
+        ports:
+        - containerPort: 8051
+        env:
+        - name: DEPLOYMENT_ENV_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: microsys-config
+              key: DEPLOYMENT_ENV

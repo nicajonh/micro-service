@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-mvn package
+mvn clean package
 
-docker build -t 192.168.128.132:8081/micro-service/api-gateway-zuul:latest .
+docker build -t harbor.nicajonh.com:8180/micro-service/api-gateway-zuul:latest .
 
-docker push 192.168.128.132:8081/micro-service/api-gateway-zuul:latest
+docker push harbor.nicajonh.com:8180/micro-service/api-gateway-zuul:latest

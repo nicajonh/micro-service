@@ -1,6 +1,5 @@
-FROM openjdk:7-jre
-MAINTAINER xxx xxx@xxx.com
-ENV ZOOKEEPER_HOST 192.168.128.132
+FROM harbor.nicajonh.com:8180/micro-service/openjdk:7-jre
+MAINTAINER nicajonh nicajonh@163.com
 
 COPY target/course-edge-service-1.0-SNAPSHOT.jar /course-edge-service.jar
 

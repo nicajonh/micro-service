@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-mvn clean package
 
-docker build -t 192.168.128.132:8081/micro-service/user-edge-service:latest .
-docker push 192.168.128.132:8081/micro-service/user-edge-service:latest
+mvn clean package -Dmaven.test.skip=true
+
+docker build -t harbor.nicajonh.com:8180/micro-service/user-edge-service:latest .
+docker push harbor.nicajonh.com:8180/micro-service/user-edge-service:latest

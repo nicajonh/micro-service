@@ -9,8 +9,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-sender = 'imoocd@163.com'
-authCode = 'aA111111'
+sender = 'nicajonh@163.com'
+authCode = '2008521loveyou'
 class MessageServiceHandler:
 
     def sendMobileMessage(self, mobile, message):

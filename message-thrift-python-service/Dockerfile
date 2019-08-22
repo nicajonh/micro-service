@@ -1,5 +1,6 @@
-FROM python-base:latest
-MAINTAINER xxx xxx@xxx.com
+FROM harbor.nicajonh.com:8180/micro-service/python-base:latest
+
+MAINTAINER nicajonh nicajonh@163.com
 
 ENV PYTHONPATH /
 COPY message /message
